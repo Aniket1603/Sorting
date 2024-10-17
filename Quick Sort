@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class QuickSort {
+    public static int partition(int ar[],int low,int high)
+    {
+        int pivot = ar[high];
+        int i= low -1;
+        
+        for(int j = low;j<high;j++)
+        {
+            if(ar[j] < pivot)
+            {
+                i++;
+                int tamp = ar[i];
+                ar[i] = ar[j] ;
+                ar[j] = tamp;
+            }
+        }
+        i++;
+        int tamp = ar[i];
+        ar[i] = pivot;
+        ar[high] = tamp;
+        return i;
+    }
+    
+    
+    public static void  quickSort(int ar[],int low,int high) {
+        if(low < high)
+        {
+        int pix = partition(ar,low,high);
+         quickSort(ar,low,pix-1);
+         quickSort(ar,pix+1,high);
+        }
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        Scanner scan = new Scanner (System.in);
+        System.out.println("enter the limit of array");
+        int n = scan.nextInt();
+        int ar[] = new int[n];
+             System.out.println("enter the element of array");
+             for(int i=0;i<n;i++) // 6 3 9 5 2 8
+             {
+                 ar[i] = scan.nextInt();
+             }
+             int low = 0;
+             int high = ar.length-1;
+            
+             
+             quickSort(ar,low,high);
+            for(int i=0;i<n;i++)
+            {
+                System.out.print(ar[i] +" ");
+            }
+        
+    }
+    
+}
